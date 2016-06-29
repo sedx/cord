@@ -24,6 +24,10 @@ module Cord
         @context.params[@knot] = args
       end
 
+      def name
+        to_s.match(/::(\w+\b)/)[1]
+      end
+
       private
 
       def with_context(knot, prepare_blk)
