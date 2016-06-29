@@ -33,12 +33,12 @@ module Cord
 
       def tie(entity)
         entity.provider = self
+        entity = const_set(entity.name, entity)
         entity.instance_eval do
           ::Cord::Connection::FAILURES.each do |f|
-            Object.const_set("Status#{f}", Class.new(StandardError))
+            Object.const_set("#{self.provider}#{self.name}Status#{f}", Class.new(StandardError))
           end
         end
-        const_set(entity.to_s.match(/::(\w+\b)/)[1], entity)
       end
     end
   end

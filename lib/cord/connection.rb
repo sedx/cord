@@ -20,7 +20,7 @@ module Cord
         build_request(req, path, params)
       end
       if FAILURES.include? response.status
-        raise Object.const_get("::#{provider}::#{entity}::Status#{response.status}"),
+        raise Object.const_get("#{provider}#{entity.name}Status#{response.status}"),
               response.body
       end
       hash = JSON.parse(response.body)
