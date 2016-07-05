@@ -46,7 +46,6 @@ module Cord
     end
 
     def build_request(req, path, params)
-      p params
       req.url path.to_s
       req.params = params unless params.empty?
     end
